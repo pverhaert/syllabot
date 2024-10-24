@@ -1,0 +1,132 @@
+outline_task:
+  agent: outline_creator
+  description: >
+    Develop a comprehensive and detailed course outline for: {course}. 
+    Take into account any special needs: {special_needs} to ensure the course is accessible and inclusive. 
+    Ensure all content is written in {language}.
+  expected_output: >
+    - Start with a level 1 heading "# ..." that contains an attractive title about the course
+    - A level 2 heading "## ..." for the course description
+      - a short description of the topic
+    - A level 2 heading for the course outline
+      - an ordered list for the chapters in the course
+          - a (nested) bullet point list of subchapters and sub subchapters
+    - A level 2 heading for the learning outcomes (what you'll learn in the course)
+      - a brief summary of the topic in plain text
+
+draft_task:
+  agent: draft_creator
+  context:
+    - outline_task
+  description: >
+    Utilize the course outline provided from the outline task to create a comprehensive draft. 
+    Develop detailed content for every topic, subtopic, and sub-subtopic, ensuring thorough coverage. 
+    Include one or more (code) examples for each section to enhance understanding. 
+    Adhere to best practices and the latest standards throughout the drafting process.
+    Ensure all content is written in {language}.
+  expected_output: >
+    A nicely formatted markdown draft for each section of the outline.
+    Don't repeat the main title, start with the title "First draft"
+    
+    Expected format:
+      ## Title is: "First draft"
+      ### Main topic 1
+        Description of the topic in plain text
+      #### Subtopic 1
+        Description of the subtopic in plain text
+      ##### Sub-subtopic 1
+        Description of the sub-subtopic in plain text
+      ### Main topic 2
+        Description of the topic in plain text
+        ...
+
+enhancer_task:
+  agent: course_enhancer
+  context:
+    - draft_task
+  description: >
+    Enrich the draft by enhancing the text and adding depth:
+      - Improve writing quality and clarity
+      - Add relevant supporting information and context where needed
+      - Ensure all new content is directly related to the topic and is accurate and valuable
+    Maintain the existing structure of the draft.
+    Aim to at least DOUBLE THE CONTENT while preserving quality and relevance.
+    Ensure all content is written in {language}.
+  expected_output: >
+    A fully enhanced version of the draft with the same structure
+    Change the title form "First draft" to "Course Content"
+
+exercise_task:
+  agent: exercise_creator
+  context:
+    - outline_task
+  description: >
+    Develop {num_exercises} high-quality, exercises for the course: {course}. 
+    Ensure that each exercise aligns with the course outline, beginning with simpler tasks and progressively 
+    incorporating more advanced challenges as necessary.
+    Clearly indicate the difficulty level in the title by adding asterisks:
+      - Title of an easy exercise \*
+      - Title of a medium exercise \*\*
+      - Title of an advanced exercise \*\*\*
+    Ensure that examples are "real and useful":
+      - Not: "Iterating over an array...",
+        But: "Create a to-do app...", 
+      - Not: "Generate 5 random numbers..."
+        But: "Trow 5 dices and output the results..."
+    rather than abstract tasks like "iterating over an array...". 
+    Ensure all content is written in {language}.
+  expected_output: >
+    Begin with a level 2 heading titled "Exercises". 
+    For each exercise, include the following components:
+      - A level 3 heading with the title of the exercise indicating the difficulty level with asterisks.
+      - A detailed question or prompt that serves as an example.
+      - The solution to the question with the title "Solution" in bold.
+      - A clear explanation or solution, if applicable, to demonstrate the exercise's purpose
+        with the title "Explanation" in bold.
+    
+    Expected format:
+      ## Exercises
+      ### Title of exercise 1 with asterisks
+      The question that belongs to the exercise in plain text
+      
+      **Solution**
+    
+      The solution to the question in code or in plain text
+      
+      **Explanation**
+    
+      The detailed explanation to the solution in plain text or bullet points
+    
+      ### Title of exercise 2 with asterisks
+      The question that belongs to the exercise in plain text
+      ...
+
+quiz_task:
+  agent: quiz_creator
+  context:
+    - outline_task
+  description: >
+    Develop {num_quizzes} high-quality, quiz questions for the course: {course}. 
+    Ensure that each question aligns with the course outline, beginning with simpler tasks and progressively 
+    incorporating more advanced challenges as necessary.
+    Every question should have 5 or 6 possible answers, grouped in a list.
+    Every answer should start with A, B, ...
+    Start a new paragraph after the possible answers and show the correct answer in bold.
+    Start a new paragraph and give a detailed explanation about the correct answer.
+  expected_output: >
+    High quality, multiple choice questions for the course.
+    
+    Expected format:
+      ## Quiz
+      ### Title of quiz question 1
+      The question that belongs to the question in plain text.
+      5 or 6 possible answers. (Use code blocks if applicable) Eg:
+        - **A**: possible answer 1
+        - **B**: possible answer 2
+        - ...
+      
+      **Correct answer**
+      
+      Explain the correct answer in detailed, in-depth, and engaging manner.
+
+
