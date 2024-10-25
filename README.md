@@ -1,3 +1,5 @@
+# SyllaBot with CrewAI
+
 This repository facilitates the creation of a course using [CrewAI](https://crew.ai/), ideally suited for courses on programming languages. The CrewAI generates five essential files for you:
 
 - `course_latest/1_outline.md`: An outline for a specific course chapter (e.g., "Functions in JavaScript").
@@ -16,7 +18,7 @@ This repository facilitates the creation of a course using [CrewAI](https://crew
 ## Requirements
 
 - [Git](https://git-scm.com/)
-- [Python](https://www.python.org) `3.10.x` or `3.11.x` (Check your active Python version with `python -V`)
+- [Python](https://www.python.org) `3.12.x`, `3.11.x` or `3.10.x` (Check your active Python version with `python -V`)
 
 ## Getting Started
 

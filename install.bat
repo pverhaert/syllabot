@@ -2,14 +2,18 @@
 setlocal enabledelayedexpansion
 
 REM Find Python installation
-set "pythonPath=C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python311\python.exe"
+set "pythonPath=C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python312\python.exe"
 if not exist "!pythonPath!" (
-    echo Python 3.11 not found, checking for Python 3.10...
-    set "pythonPath=C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python310\python.exe"
+    echo Python 3.12 not found, checking for Python 3.11...
+    set "pythonPath=C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python311\python.exe"
     if not exist "!pythonPath!" (
-        echo Python 3.10 not found. Please install Python 3.11 or 3.10.
-        pause
-        exit /b
+        echo Python 3.11 not found, checking for Python 3.10...
+        set "pythonPath=C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python310\python.exe"
+        if not exist "!pythonPath!" (
+            echo Python 3.10 not found. Please install Python 3.12, 3.11, or 3.10.
+            pause
+            exit /b
+        )
     )
 )
 
