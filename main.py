@@ -4,6 +4,7 @@ import shutil
 import time
 
 import pandas as pd
+import pypandoc
 import streamlit as st
 from groq import Groq
 
@@ -31,6 +32,7 @@ def create_new_course_file(inputs):
         f.write(f"___\n")
         f.write(f"- **Prompt:** {inputs['course']}\n")
         f.write(f"- **Special needs:** {inputs['special_needs']}\n")
+        f.write(f"- **Target audience:** {inputs['target_audience']}\n")
         f.write(f"- **Language:** {inputs['language']}\n")
         f.write(f"- **Model:** {inputs['model']}\n")
         f.write(f"- **Temperature:** {inputs['temperature']}\n")
@@ -47,14 +49,11 @@ def run_crew(inputs):
     start_time = time.time()
 
     create_new_course_file(inputs)
-    # create_index_file(inputs['course'])
     my_crew = CourseBuilderCrew(inputs=inputs).crew()
     # with st.expander("Live Info", expanded=True):
     #     st.write("Starting the course generation process...")
     my_crew.kickoff(inputs=inputs)
-    # st.write("Course generation complete!")
-    # st.write("Usage Metrics:", my_crew.usage_metrics)
-    # Copy course to courses folder
+    # Create a filename for the final output Markdown file
     client = Groq()
     completion = client.chat.completions.create(
         model="llama3-8b-8192",
@@ -98,22 +97,30 @@ def run_crew(inputs):
         f.write(content)
     # Make a copy of the final.md file in course_backup folder
     shutil.copy('course_latest/course.md', f'course_history/{prefix}_{filename}.md')
+    # Convert the markdown file to a docx file and save it also in course_backup folder
+    pypandoc.convert_file('course_latest/course.md', 'docx',
+                          outputfile=f'course_history/{prefix}_{filename}.docx')
+    # Convert the markdown file to a docx file with the template "course_templates/Thomas_More.docx"
+    pypandoc.convert_file('course_latest/course.md', 'docx',
+                          outputfile=f'course_history/{prefix}_{filename}_tm.docx',
+                          extra_args=['--reference-doc', './course_templates/ThomasMore.docx'])
 
 
 def main():
     create_folders()
     # Streamlit app
     with open('assets/logo-tm.svg') as f:
-        st.markdown(f'<div id="main_header">{f.read()}<p>ITF SyllaBot <span>(v0.1.1)</span></p></div>',
+        st.markdown(f'<div id="main_header">{f.read()}<p>ITF SyllaBot <span>(v0.1.2)</span></p></div>',
                     unsafe_allow_html=True)
 
     # Sidebar
     with st.sidebar:
         st.header("Input Parameters")
-
+        # Input parameters
         language = st.text_input("Language for this course", value="English")
         course = st.text_input("Write a course about", value="", placeholder="Short description of the topic")
         special_needs = st.text_input("Special needs to take into account?", value="", placeholder="Optional")
+        target_audience = st.text_input("Target audience", value="", placeholder="Optional")
         model = st.selectbox("Model", options=[m['model'] for m in Models])
         col1, col2 = st.columns(2)
         with col1:
@@ -123,10 +130,13 @@ def main():
         temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.5, step=0.05)
 
         if st.button("Generate New Content"):
+            if target_audience == "":
+                target_audience = "not specified"
             inputs = {
                 'language': language,
                 'course': course,
                 'special_needs': special_needs,
+                'target_audience': target_audience,
                 'model': model,
                 'num_exercises': num_exercises,
                 'num_quizzes': num_quizzes,  # Using the same value as exercises for quiz
@@ -141,16 +151,16 @@ def main():
             run_crew(inputs)
 
     # Main content
-    tab1, tab2, tab3 = st.tabs(["New Course", "Model details", "Previously Generated Courses"])
+    new_course, model_details, all_courses = st.tabs(["New Course", "Model details", "Previously Generated Courses"])
 
-    with tab1:
+    with new_course:
         if os.path.exists('course_latest/course.md'):
             with open('course_latest/course.md', 'r') as f:
                 st.markdown(f.read(), unsafe_allow_html=True)
         else:
             st.write("No final output available yet. Generate a course to see the results.")
 
-    with tab2:
+    with model_details:
         # Info about add/remove models
         with st.expander("📚 How to Add/Remove Models"):
             st.markdown("""
@@ -184,26 +194,46 @@ def main():
         # Display the DataFrame as a table
         st.table(df)
 
-    with tab3:
+    with all_courses:
         # Read all files in course_history folder and display them in a dropdown
         course_files = [f for f in os.listdir('course_history') if os.path.isfile(os.path.join('course_history', f))]
         if len(course_files) == 0:
             st.write("No courses generated yet.")
         else:
+            # Filter only .md files (.docx must not be visible in the dropdown)
+            course_files = [f for f in course_files if f.endswith('.md')]
             # show all files in a reverse order
             course_files = sorted(course_files, reverse=True)
-            selected_file = st.selectbox("Select a course", course_files)
-            with open(os.path.join('course_history', selected_file), 'r') as f:
-                # Download the file in markdown format
-                st.download_button('Download Markdown File', f, file_name=selected_file)
-                # Reset the file pointer to the beginning of the file
-                f.seek(0)
-                # TODO: convert and download the markdown file to docx
-                # TODO: convert and download the docx file to pdf
-                # Reset the file pointer to the beginning of the file
-                f.seek(0)
-                # Display the file content
-                st.markdown(f.read(), unsafe_allow_html=True)
+            # Get the selected md file and docx files
+            selected_file_md = st.selectbox("Select a course", course_files)
+            selected_file_default_docx = selected_file_md.split(".")[0] + ".docx"
+            selected_file_tm_docx = selected_file_md.rsplit(".", 1)[0] + "_tm.docx"
+            st.markdown("<b>Download selected file</b>", unsafe_allow_html=True)
+            word, tm_word, md = st.columns(3)
+            with word:
+                # if the file exists, download the file in docx format
+                if os.path.exists(os.path.join('course_history', selected_file_default_docx)):
+                    with open(os.path.join('course_history', selected_file_default_docx), 'rb') as docx_file:
+                        st.download_button('DOCX (default template)', docx_file,
+                                           file_name=selected_file_default_docx,
+                                           use_container_width=True,
+                                           )
+            with tm_word:
+                # if the file exists, download the file in docx format
+                if os.path.exists(os.path.join('course_history', selected_file_tm_docx)):
+                    with open(os.path.join('course_history', selected_file_tm_docx), 'rb') as docx_file:
+                        st.download_button('DOCX (Thomas More template)', docx_file,
+                                           file_name=selected_file_tm_docx,
+                                           use_container_width=True,
+                                           type="primary"
+                                           )
+            with md:
+                # download the file in Markdown format
+                with open(os.path.join('course_history', selected_file_md), 'r') as md_file:
+                    st.download_button('Markdown',md_file,file_name=selected_file_md, use_container_width=True)
+            # display the file content in markdown
+            with open(os.path.join('course_history', selected_file_md), 'r') as md_file:
+                st.markdown(md_file.read(), unsafe_allow_html=True)
 
 
 if __name__ == '__main__':

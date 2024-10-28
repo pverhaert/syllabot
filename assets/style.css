@@ -35,6 +35,21 @@ div[data-testid="stVerticalBlockBorderWrapper"][height="20"] {
 }
 
 button[kind="secondary"] {
+    background-color: #00293d !important;
+    color: white !important;
+
+    &:hover {
+        background-color: rgba(0, 41, 61, 0.78) !important;
+        border-color: #00293d !important;
+    }
+}
+
+button[kind="primary"] {
     background-color: #ee4719 !important;
     color: white !important;
+
+    &:hover {
+        background-color: rgba(238, 71, 25, 0.78) !important;
+        border-color: #ee4719 !important;
+    }
 }

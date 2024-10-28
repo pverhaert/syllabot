@@ -70,6 +70,9 @@ You can choose between [Groq](https://groq.com/) or [OpenRouter](https://openrou
 GROQ_API_KEY=
 OPENROUTER_API_KEY=
 SERPER_API_KEY=
+
+# Disable telemetry
+OTEL_SDK_DISABLED=true
 ```
   
 ## Run the Crew
@@ -86,8 +89,10 @@ SERPER_API_KEY=
 ## Input Fields
 
 - `Language of the course`: The language of the course, e.g., "English".
-- `Write a course about`: The name of the course, e.g., "Funcripns in Python".
+- `Write a course about`: The name of the course, e.g.: "Functions in Python".
 - `Special needs to take into account`: The topics that must or may need be included in the course (can be left empty).
+- `Target audience`: The target audience of the course (can be left empty).  
+    E.g.: "beginners", "senior web developer", "12 years old", etc.
 - `Model`: The model to use for the course creation.
 - `Nr of Exercises`: The number of exercises to include in the course.
 - `Nr of Quizzes`: The number of quiz questions to include in the course.
@@ -97,7 +102,7 @@ SERPER_API_KEY=
 ## Previous Generated Courses
 
 After the crew has finished, you can find all the generated courses in the `course_history` folder.   
-All the files are in Markdown format.
+All the files are in Markdown and in Word format.
 
 > [!TIP]
 > - Install the [Markdown Viewer](https://chromewebstore.google.com/detail/markdown-viewer/ckkdlimhmcjmikdlpkmbgfkaikojcbjk) extension to view the course files in your browser.

@@ -3,7 +3,8 @@ outline_task:
   description: >
     Develop a comprehensive and detailed course outline for: {course}. 
     Take into account any special needs: {special_needs} to ensure the course is accessible and inclusive. 
-    Ensure all content is written in {language}.
+    Always keep the target audience in mind: {target_audience}.
+    Ensure all content, including the headings, are written in {language}.
   expected_output: >
     - Start with a level 1 heading "# ..." that contains an attractive title about the course
     - A level 2 heading "## ..." for the course description
@@ -23,7 +24,9 @@ draft_task:
     Develop detailed content for every topic, subtopic, and sub-subtopic, ensuring thorough coverage. 
     Include one or more (code) examples for each section to enhance understanding. 
     Adhere to best practices and the latest standards throughout the drafting process.
-    Ensure all content is written in {language}.
+    Search for at least 5 relevant resources.
+    Always keep the target audience in mind: {target_audience}.
+    Ensure all content, including the headings, are written in {language}.
   expected_output: >
     A nicely formatted markdown draft for each section of the outline.
     Don't repeat the main title, start with the title "First draft"
@@ -39,6 +42,11 @@ draft_task:
       ### Main topic 2
         Description of the topic in plain text
         ...
+    
+      ## External resources: (in the language of the course)
+        - [title 1](url1): summary of the resource in plain text
+        - [title 2](url2): summary of the resource in plain text
+        - ...
 
 enhancer_task:
   agent: course_enhancer
@@ -50,8 +58,10 @@ enhancer_task:
       - Add relevant supporting information and context where needed
       - Ensure all new content is directly related to the topic and is accurate and valuable
     Maintain the existing structure of the draft.
+    Keep the external resources in place.
     Aim to at least DOUBLE THE CONTENT while preserving quality and relevance.
-    Ensure all content is written in {language}.
+    Always keep the target audience in mind: {target_audience}.
+    Ensure all content, including the headings, are written in {language}.
   expected_output: >
     A fully enhanced version of the draft with the same structure
     Change the title form "First draft" to "Course Content"
@@ -69,12 +79,13 @@ exercise_task:
       - Title of a medium exercise \*\*
       - Title of an advanced exercise \*\*\*
     Ensure that examples are "real and useful":
-      - Not: "Iterating over an array...",
-        But: "Create a to-do app...", 
-      - Not: "Generate 5 random numbers..."
-        But: "Trow 5 dices and output the results..."
+      - Bad example: "Iterating over an array...",
+        Good example: "Create a to-do app...", 
+      - Bad example: "Generate 5 random numbers..."
+        Good example: "Trow 5 dices and output the results..."
     rather than abstract tasks like "iterating over an array...". 
-    Ensure all content is written in {language}.
+    Always keep the target audience in mind: {target_audience}.
+    Ensure all content, including the headings, are written in {language}.
   expected_output: >
     Begin with a level 2 heading titled "Exercises". 
     For each exercise, include the following components:
@@ -85,7 +96,7 @@ exercise_task:
         with the title "Explanation" in bold.
     
     Expected format:
-      ## Exercises
+      ## Exercises (in the language of the course)
       ### Title of exercise 1 with asterisks
       The question that belongs to the exercise in plain text
       
@@ -107,18 +118,21 @@ quiz_task:
     - outline_task
   description: >
     Develop {num_quizzes} high-quality, quiz questions for the course: {course}. 
-    Ensure that each question aligns with the course outline, beginning with simpler tasks and progressively 
+    Ensure that each question aligns with the course outline, beginning with simpler tasks and progressively.
+    Make a short title that describes the question.
     incorporating more advanced challenges as necessary.
     Every question should have 5 or 6 possible answers, grouped in a list.
     Every answer should start with A, B, ...
     Start a new paragraph after the possible answers and show the correct answer in bold.
     Start a new paragraph and give a detailed explanation about the correct answer.
+    Always keep the target audience in mind: {target_audience}.
+    Ensure all content, including the headings, are written in {language}.
   expected_output: >
     High quality, multiple choice questions for the course.
     
     Expected format:
-      ## Quiz
-      ### Title of quiz question 1
+      ## Quiz (in the language of the course)
+      ### Short title of question 1
       The question that belongs to the question in plain text.
       5 or 6 possible answers. (Use code blocks if applicable) Eg:
         - **A**: possible answer 1
@@ -128,5 +142,18 @@ quiz_task:
       **Correct answer**
       
       Explain the correct answer in detailed, in-depth, and engaging manner.
+    
+    ### Short title of question 2
+    The question that belongs to the question in plain text.
+    5 or 6 possible answers. (Use code blocks if applicable) Eg:
+      - **A**: possible answer 1
+      - **B**: possible answer 2
+      - ...
+    
+    **Correct answer**
+    
+    ### ...
+    
+    Explain the correct answer in detailed, in-depth, and engaging manner.
 
 

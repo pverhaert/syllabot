@@ -50,7 +50,8 @@ class CourseBuilderCrew():
             llm=self.llm,
             config=self.agents_config['draft_creator'],
             allow_delegation=False,
-            tools=[],
+            tools=[self.search_tool],
+            max_iter=3,
             verbose=True
         )
 
@@ -153,6 +154,7 @@ class CourseBuilderCrew():
             agents=self.agents,  # Automatically created by the @agent decorator
             tasks=self.tasks,  # Automatically created by the @task decorator
             process=Process.sequential,
+            # max_rpm= 10,
             # task_callback=self.callback_function,
             verbose=True,
         )

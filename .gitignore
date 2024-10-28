@@ -8,4 +8,5 @@ __pycache__
 course_history
 course_latest
 *_*
+!course_templates
 *~
