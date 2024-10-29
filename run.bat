@@ -23,8 +23,8 @@ streamlit run main.py
 REM Reminder message
 echo.
 echo.
-echo All the generated files are located in the "tmp" folder.
-echo They are all combined into "tmp/course.md".
+echo Generated (inbetween)files are located in the "course_latest" folder.
+echo A history of generated files is kept in the "course_history" folder.
 echo.
 
 pause
