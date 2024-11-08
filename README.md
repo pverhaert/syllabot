@@ -52,42 +52,41 @@ This repository facilitates the creation of a course using [CrewAI](https://crew
 You can choose between 4 diﬀerent API-providers, but you need at least one of them.
 
 ### Groq (Recommended)
-
+- API key needed for all the models that starts with `groq/...`.
 - The [Groq](https://groq.com/) API is fast and free to use.
 - Create a [Groq account](https://console.groq.com/).
 - Generate an [API key](https://console.groq.com/keys).
 - Update the `.env` file with your API key (`GROQ_API_KEY=`).
 
-### OpenRouter (Optional)
-
-- With [OpenRouter](https://openrouter.ai/), you can access almost all frontier models from OpenAI, Anthropic, Google, Cohere, etc.
-- Some APIs are not free, but frontier models can generate better results.
-- Create an OpenRouter account.
-- Generate an [API key](https://openrouter.ai/settings/keys).
-- Update the `.env` file with your API key (`OPENROUTER_API_KEY=`).
 
 ### Gemini (Optional)
+- API key needed for all the models that starts with `gemini/...`.
 - Sign in to [Google Ai Studio](https://ai.google.dev/aistudio).
 - Generate an [API key](https://aistudio.google.com/app/apikey).
 - Update the `.env` file with your API key (`GEMINI_API_KEY=`).
 
 ### XAI (Optional)
+- API key needed for all the models that starts with `xai/...`.
 - Sign in to [XAI](https://console.x.ai/).
 - Generate an API key.
 - Update the `.env` file with your API key (`XAI_API_KEY=`).
 
+### OpenRouter (Optional)
+- API key needed for all the models that starts with `openrouter/...`.
+- With [OpenRouter](https://openrouter.ai/), you can access almost all frontier models from OpenAI, Anthropic, Google, Cohere, etc.
+- Some APIs are not free, but frontier models can generate better results.
+- Create an OpenRouter account.
+- Generate an [API key](https://openrouter.ai/settings/keys).
+- Update the `.env` file with your API key (`OPENROUTER_API_KEY=`)._
 
-### Serper
-
-- We use the [Serper API](https://serper.dev/) to search the web for relevant sources about the course you want to create.
-- The first 2,500 API calls are free.
-- Generate an [API key](https://serper.dev/api-key/).
-- Update the `.env` file with your API key (`SERPER_API_KEY=`).
 
 ```markdown
-GROQ_API_KEY=
-OPENROUTER_API_KEY=
 SERPER_API_KEY=
+
+GROQ_API_KEY=
+GEMINI_API_KEY=
+XAI_API_KEY=
+OPENROUTER_API_KEY=
 
 # Disable telemetry
 OTEL_SDK_DISABLED=true

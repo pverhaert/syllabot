@@ -152,7 +152,7 @@ def main():
 
     with new_course:
         if os.path.exists('course_latest/course.md'):
-            with open('course_latest/course.md', 'r') as f:
+            with open('course_latest/course.md', 'r', encoding='utf-8') as f:
                 st.markdown(f.read(), unsafe_allow_html=True)
         else:
             st.write("No final output available yet. Generate a course to see the results.")
@@ -226,10 +226,10 @@ def main():
                                            )
             with md:
                 # download the file in Markdown format
-                with open(os.path.join('course_history', selected_file_md), 'r') as md_file:
+                with open(os.path.join('course_history', selected_file_md), 'r', encoding='utf-8') as md_file:
                     st.download_button('Markdown', md_file, file_name=selected_file_md, use_container_width=True)
             # display the file content in markdown
-            with open(os.path.join('course_history', selected_file_md), 'r') as md_file:
+            with open(os.path.join('course_history', selected_file_md), 'r', encoding='utf-8') as md_file:
                 st.markdown(md_file.read(), unsafe_allow_html=True)
 
 
