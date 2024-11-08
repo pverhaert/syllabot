@@ -110,7 +110,7 @@ def main():
     create_folders()
     # Streamlit app
     with open('assets/logo-tm.svg') as f:
-        st.markdown(f'<div id="main_header">{f.read()}<p>ITF SyllaBot <span>(v0.1.3)</span></p></div>',
+        st.markdown(f'<div id="main_header">{f.read()}<p>ITF SyllaBot <span>(v0.1.4)</span></p></div>',
                     unsafe_allow_html=True)
 
     # Sidebar
@@ -122,6 +122,7 @@ def main():
         special_needs = st.text_input("Special needs to take into account?", value="", placeholder="Optional")
         target_audience = st.text_input("Target audience", value="", placeholder="Optional")
         model = st.selectbox("Model", options=[m['model'] for m in Models])
+        include_web_search = st.toggle("Include Web Search?", value=False, help="Enable or disable web search in the generated content")
         col1, col2 = st.columns(2)
         with col1:
             num_exercises = st.number_input("Nr of Exercises", value=20, min_value=0)
@@ -138,6 +139,7 @@ def main():
                 'special_needs': special_needs,
                 'target_audience': target_audience,
                 'model': model,
+                'include_web_search': include_web_search,
                 'num_exercises': num_exercises,
                 'num_quizzes': num_quizzes,  # Using the same value as exercises for quiz
                 'temperature': temperature,

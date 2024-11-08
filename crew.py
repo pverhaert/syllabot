@@ -16,7 +16,8 @@ class CourseBuilderCrew():
             model=inputs['model'],
             temperature=inputs['temperature'],
         )
-        self.search_tool = SerperDevTool()
+        # self.search_tool = SerperDevTool()
+        self.search_tool = SerperDevTool() if inputs['include_web_search'] else None
         self.callback_function = callback_function
 
     # Create outline
@@ -45,11 +46,12 @@ class CourseBuilderCrew():
 
     @agent
     def draft_creator(self) -> Agent:
+        tools = [self.search_tool] if self.search_tool else []
         return Agent(
             llm=self.llm,
             config=self.agents_config['draft_creator'],
             allow_delegation=False,
-            tools=[self.search_tool],
+            tools=tools,
             max_iter=3,
             verbose=True
         )
