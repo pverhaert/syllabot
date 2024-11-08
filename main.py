@@ -110,7 +110,7 @@ def main():
     create_folders()
     # Streamlit app
     with open('assets/logo-tm.svg') as f:
-        st.markdown(f'<div id="main_header">{f.read()}<p>ITF SyllaBot <span>(v0.1.2)</span></p></div>',
+        st.markdown(f'<div id="main_header">{f.read()}<p>ITF SyllaBot <span>(v0.1.3)</span></p></div>',
                     unsafe_allow_html=True)
 
     # Sidebar
@@ -143,9 +143,6 @@ def main():
                 'temperature': temperature,
                 'serper_api_key': os.environ.get('SERPER_API_KEY', None)
             }
-
-            inputs['llm_api_key'] = os.environ.get('GROQ_API_KEY', None) if inputs['model'].startswith(
-                'groq/') else os.environ.get('OPENROUTER_API_KEY', None)
 
             # st.write("Inputs:", inputs)
             run_crew(inputs)
@@ -230,7 +227,7 @@ def main():
             with md:
                 # download the file in Markdown format
                 with open(os.path.join('course_history', selected_file_md), 'r') as md_file:
-                    st.download_button('Markdown',md_file,file_name=selected_file_md, use_container_width=True)
+                    st.download_button('Markdown', md_file, file_name=selected_file_md, use_container_width=True)
             # display the file content in markdown
             with open(os.path.join('course_history', selected_file_md), 'r') as md_file:
                 st.markdown(md_file.read(), unsafe_allow_html=True)

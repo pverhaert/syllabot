@@ -42,9 +42,16 @@ This repository facilitates the creation of a course using [CrewAI](https://crew
 
 ## Configure the API keys in the .env File
 
-You can choose between [Groq](https://groq.com/) or [OpenRouter](https://openrouter.com/).
+### Serper
 
-### Groq
+- We use the [Serper API](https://serper.dev/) to search the web for relevant sources about the course you want to create.
+- The first 2,500 API calls are free.
+- Generate an [API key](https://serper.dev/api-key/).
+- Update the `.env` file with your API key (`SERPER_API_KEY=`).
+
+You can choose between 4 diﬀerent API-providers, but you need at least one of them.
+
+### Groq (Recommended)
 
 - The [Groq](https://groq.com/) API is fast and free to use.
 - Create a [Groq account](https://console.groq.com/).
@@ -54,10 +61,21 @@ You can choose between [Groq](https://groq.com/) or [OpenRouter](https://openrou
 ### OpenRouter (Optional)
 
 - With [OpenRouter](https://openrouter.ai/), you can access almost all frontier models from OpenAI, Anthropic, Google, Cohere, etc.
-- Most APIs are not free, but frontier models can generate better results.
+- Some APIs are not free, but frontier models can generate better results.
 - Create an OpenRouter account.
 - Generate an [API key](https://openrouter.ai/settings/keys).
 - Update the `.env` file with your API key (`OPENROUTER_API_KEY=`).
+
+### Gemini (Optional)
+- Sign in to [Google Ai Studio](https://ai.google.dev/aistudio).
+- Generate an [API key](https://aistudio.google.com/app/apikey).
+- Update the `.env` file with your API key (`GEMINI_API_KEY=`).
+
+### XAI (Optional)
+- Sign in to [XAI](https://console.x.ai/).
+- Generate an API key.
+- Update the `.env` file with your API key (`XAI_API_KEY=`).
+
 
 ### Serper
 

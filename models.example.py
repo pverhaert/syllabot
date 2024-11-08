@@ -24,6 +24,24 @@ Models = [
         "price_output": 0
     },
     {
+        "model": "gemini/gemini-1.5-pro-002",
+        "max_output_tokens": 8.192,
+        "price_input": 0,
+        "price_output": 0
+    },
+    {
+        "model": "gemini/gemini-1.5-flash-002",
+        "max_output_tokens": 8.192,
+        "price_input": 0,
+        "price_output": 0
+    },
+    {
+        "model": "xai/grok-beta",
+        "max_output_tokens": 128.000,
+        "price_input": 5,
+        "price_output": 15
+    },
+    {
         "model": "openrouter/nvidia/llama-3.1-nemotron-70b-instruct",
         "max_output_tokens": 131.072,
         "price_input": 0.35,

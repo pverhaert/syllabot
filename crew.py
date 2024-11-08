@@ -13,7 +13,6 @@ class CourseBuilderCrew():
 
     def __init__(self, inputs) -> None:
         self.llm = LLM(
-            api_key=inputs['llm_api_key'],
             model=inputs['model'],
             temperature=inputs['temperature'],
         )
