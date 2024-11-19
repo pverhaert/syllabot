@@ -24,6 +24,12 @@ Models = [
         "price_output": 0
     },
     {
+        "model": "gemini/gemini-exp-1114",
+        "max_output_tokens": 8.192,
+        "price_input": 0,
+        "price_output": 0
+    },
+    {
         "model": "gemini/gemini-1.5-pro-002",
         "max_output_tokens": 8.192,
         "price_input": 0,
