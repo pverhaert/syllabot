@@ -1,6 +1,6 @@
 Models = [
     {
-        "model": "groq/llama-3.2-90b-text-preview",
+        "model": "groq/llama-3.2-90b-vision-preview",
         "max_output_tokens": 8.192,
         "price_input": 0,
         "price_output": 0
@@ -12,7 +12,7 @@ Models = [
         "price_output": 0
     },
     {
-        "model": "groq/llama-3.2-11b-text-preview",
+        "model": "groq/llama-3.2-11b-vision-preview",
         "max_output_tokens": 8.192,
         "price_input": 0,
         "price_output": 0
@@ -40,12 +40,6 @@ Models = [
         "max_output_tokens": 8.192,
         "price_input": 0,
         "price_output": 0
-    },
-    {
-        "model": "xai/grok-beta",
-        "max_output_tokens": 128.000,
-        "price_input": 5,
-        "price_output": 15
     },
     {
         "model": "openrouter/nvidia/llama-3.1-nemotron-70b-instruct",

@@ -110,7 +110,7 @@ def main():
     create_folders()
     # Streamlit app
     with open('assets/logo-tm.svg') as f:
-        st.markdown(f'<div id="main_header">{f.read()}<p>ITF SyllaBot <span>(v0.1.4)</span></p></div>',
+        st.markdown(f'<div id="main_header">{f.read()}<p>ITF SyllaBot <span>(v0.1.5)</span></p></div>',
                     unsafe_allow_html=True)
 
     # Sidebar

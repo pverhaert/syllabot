@@ -2,7 +2,7 @@
 
 This repository facilitates the creation of a course using [CrewAI](https://crew.ai/), ideally suited for courses on programming languages. The CrewAI generates five essential files for you:
 
-- `course_latest/1_outline.md`: An outline for a specific course chapter (e.g., "Functions in JavaScript").
+- `course_latest/1_outline.md`: An outline for a specific course chapter (e.g., "JavaScript functions").
 - `course_latest/2_draft.md`: The first draft of the course, based on the outline.
 - `course_latest/3_course_content.md`: The detailed content of the course, based on the draft.
 - `course_latest/4_exercises.md`: Exercises to reinforce the subject matter.
@@ -65,12 +65,6 @@ You can choose between 4 diﬀerent API-providers, but you need at least one of 
 - Generate an [API key](https://aistudio.google.com/app/apikey).
 - Update the `.env` file with your API key (`GEMINI_API_KEY=`).
 
-### XAI (Optional)
-- API key needed for all the models that starts with `xai/...`.
-- Sign in to [XAI](https://console.x.ai/).
-- Generate an API key.
-- Update the `.env` file with your API key (`XAI_API_KEY=`).
-
 ### OpenRouter (Optional)
 - API key needed for all the models that starts with `openrouter/...`.
 - With [OpenRouter](https://openrouter.ai/), you can access almost all frontier models from OpenAI, Anthropic, Google, Cohere, etc.
@@ -85,7 +79,6 @@ SERPER_API_KEY=
 
 GROQ_API_KEY=
 GEMINI_API_KEY=
-XAI_API_KEY=
 OPENROUTER_API_KEY=
 
 # Disable telemetry
