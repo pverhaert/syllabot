@@ -33,14 +33,22 @@ draft_task:
     
     Expected format:
       ## Title is: "First draft"
+    
       ### Main topic 1
-        Description of the topic in plain text
+    
+      Description of the topic in plain text
+    
       #### Subtopic 1
-        Description of the subtopic in plain text
+    
+      Description of the subtopic in plain text
+      
       ##### Sub-subtopic 1
-        Description of the sub-subtopic in plain text
+    
+      Description of the sub-subtopic in plain text
+    
       ### Main topic 2
-        Description of the topic in plain text
+    
+      Description of the topic in plain text
         ...
     
       ## External resources: (in the language of the course)

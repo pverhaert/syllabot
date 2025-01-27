@@ -1,12 +1,18 @@
 Models = [
     {
-        "model": "groq/llama-3.2-90b-vision-preview",
+        "model": "groq/llama-3.3-70b-versatile",
         "max_output_tokens": 8.192,
         "price_input": 0,
         "price_output": 0
     },
     {
-        "model": "groq/llama-3.1-70b-versatile",
+        "model": "groq/deepseek-r1-distill-llama-70b",
+        "max_output_tokens": 8.192,
+        "price_input": 0,
+        "price_output": 0
+    },
+    {
+        "model": "groq/llama-3.2-90b-vision-preview",
         "max_output_tokens": 8.192,
         "price_input": 0,
         "price_output": 0
@@ -20,6 +26,24 @@ Models = [
     {
         "model": "groq/mixtral-8x7b-32768",
         "max_output_tokens": 32.768,
+        "price_input": 0,
+        "price_output": 0
+    },
+    {
+        "model": "gemini/gemini-2.0-flash-exp",
+        "max_output_tokens": 8.192,
+        "price_input": 0,
+        "price_output": 0
+    },
+    {
+        "model": "gemini/gemini-2.0-flash-thinking-exp",
+        "max_output_tokens": 8.192,
+        "price_input": 0,
+        "price_output": 0
+    },
+    {
+        "model": "gemini/gemini-exp-1206",
+        "max_output_tokens": 8.192,
         "price_input": 0,
         "price_output": 0
     },
@@ -40,6 +64,18 @@ Models = [
         "max_output_tokens": 8.192,
         "price_input": 0,
         "price_output": 0
+    },
+    {
+        "model": "openrouter/deepseek/deepseek-r1-distill-llama-70b",
+        "max_output_tokens": 131.072,
+        "price_input": 0.23,
+        "price_output": 0.69
+    },
+    {
+        "model": "openrouter/deepseek/deepseek-r1",
+        "max_output_tokens": 8.000,
+        "price_input": 0.55,
+        "price_output": 2.19
     },
     {
         "model": "openrouter/nvidia/llama-3.1-nemotron-70b-instruct",

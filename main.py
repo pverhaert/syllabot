@@ -119,7 +119,7 @@ def main():
         # Input parameters
         language = st.text_input("Language for this course", value="English")
         course = st.text_input("Write a course about", value="", placeholder="Short description of the topic")
-        special_needs = st.text_input("Special needs to take into account?", value="", placeholder="Optional")
+        special_needs = st.text_area("Special needs to take into account?", value="", placeholder="Optional")
         target_audience = st.text_input("Target audience", value="", placeholder="Optional")
         model = st.selectbox("Model", options=[m['model'] for m in Models])
         include_web_search = st.toggle("Include Web Search?", value=False, help="Enable or disable web search in the generated content")
